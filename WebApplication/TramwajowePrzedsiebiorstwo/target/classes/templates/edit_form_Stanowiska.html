@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Edytuj Stanowisko</title>
+<link rel="stylesheet" href="../static/css/edit.css" th:href="@{/css/edit.css}" >
+<link rel="stylesheet" href="../static/css/button.css" th:href="@{/css/button.css}" >
+</head>
+
+<body>
+	<div align="center" class="table-wrapper">
+		<!-- Page header -->
+		<h1>Edytuj Stanowisko</h1>
+
+		<!-- End line/new line -->
+		<br />
+
+		<form action="#" th:action="@{/Stanowiska/update_Stanowiska}"
+			th:object="${Stanowiska}" method="post">
+			<!-- Table -->
+			<table border="1" cellpadding="10" class="fl-table">
+
+
+				<!-- Table first row -->
+				<tr align="center">
+					<th>Nr_stanowiska:</th>
+					<td><input type="text" th:field="*{nr_stanowiska}"
+						readonly="readonly"></td>
+				</tr>
+
+				<!-- Table second row -->
+				<tr align="center">
+					<th>Nazwa:</th>
+					<td><input type="text" th:field="*{nazwa}" maxlength="30" required></td>
+				</tr>
+
+				<!-- Table third row -->
+				<tr align="center">
+					<th>Opis</th>
+					<td><input type="text" th:field="*{opis}" maxlength="400" required></td>
+				</tr>
+				
+
+				<!-- Button for save -->
+				<tr align="center">
+					<td><a href="/Stanowiska"> <input type="button"
+							value="Powrot" />
+					</a></td>
+					<td><button type="submit">Zapisz</button></td>
+				</tr>
+
+
+			</table>
+		</form>
+
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Edytuj Wynagrodzenie</title>
+<link rel="stylesheet" href="../static/css/edit.css" th:href="@{/css/edit.css}" >
+<link rel="stylesheet" href="../static/css/button.css" th:href="@{/css/button.css}" >
+</head>
+
+<body>
+	<div align="center" class="table-wrapper" >
+		<!-- Page header -->
+		<h1>Edytuj Wynagrodzenie</h1>
+
+		<!-- End line/new line -->
+		<br />
+
+		<form action="#" th:action="@{/Wynagrodzenia/update_Wynagrodzenia}"
+			th:object="${Wynagrodzenia}" method="post">
+			<!-- Table -->
+			<table border="1" cellpadding="10"  class="fl-table">
+
+
+				<!-- Table first row -->
+				<tr align="center">
+					<th>Nr_wynagrodzenia:</th>
+					<td><input type="text" th:field="*{nr_wynagrodzenia}"
+						readonly="readonly"></td>
+				</tr>
+
+				<!-- Table second row -->
+				<tr align="center">
+					<th>Data:</th>
+					<td><input type="date" th:field="*{data}" required></td>
+				</tr>
+
+				<!-- Table third row -->
+				<tr align="center">
+					<th>Kwota_podstawowa:</th>
+					<td><input type="number" th:field="*{kwota_podstawowa}" class="radio" maxlength="11" required></td>
+				</tr>
+				<!-- Table four row -->
+				<tr align="center">
+					<th>Kwota_dodatkowa:</th>
+					<td><input type="text" class="radio" onfocus="this.value=''" maxlength="11" th:field="*{kwota_dodatkowa}"></td>
+				</tr>
+				<!-- Table five row -->
+					<tr align="center">
+					<th>Nr_pracownika</th>
+					<td><input type="number" th:field="*{nr_pracownika}" class="radio" min="1" required></td>
+				</tr>
+
+
+				<!-- Button for save -->
+				<tr align="center">
+					<td><a href="/Wynagrodzenia"> <input type="button"
+							value="Powrot" />
+					</a></td>
+					<td><button type="submit">Zapisz</button></td>
+				</tr>
+
+
+			</table>
+		</form>
+
+	</div>
+	<script th:if="${error}" th:inline="javascript">
+	var teks = /*[[${errorTekst}]]*/ "error";
+	var nr = /*[[${Wynagrodzenia.nr_wynagrodzenia}]]*/
+		alert(teks);
+		window.history.pushState({page: "edit_form_Wynagrodzenia"}, "Edytuj Wynagrodzenie", "/Wynagrodzenia/edit_Wynagrodzenia/"+ nr);
+	</script>
+
+
+</body>
+</html>

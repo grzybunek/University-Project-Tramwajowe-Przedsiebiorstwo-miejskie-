@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Wynagrodzenia table</title>
+<link rel="stylesheet" href="../static/css/table.css"
+	th:href="@{/css/table.css}">
+<link rel="stylesheet" href="../static/css/button.css"
+	th:href="@{/css/button.css}">
+</head>
+
+<body>
+	<div align="center" class="table-wrapper">
+		<!-- Page header -->
+		<h1>Rekordy w wynagrodzenia</h1>
+
+		<!-- Entry to new page -->
+		<div align="center">
+			<a href="/tables"> <input type="button"
+				value="Powrot do widoku tabel" />
+			</a> <br /> <a href="/Wynagrodzenia/new_Wynagrodzenia"><input
+				type="button" value="Dodaj nowy rekord" /></a>
+		</div>
+
+		<!-- Break line -->
+		<br />
+
+		<!-- Table -->
+		<table border="1" cellpadding="10" class="fl-table">
+			<!-- Table header -->
+			<thead>
+				<tr align="center">
+					<th>Nr_wynagrodzenia</th>
+					<th>Data</th>
+					<th>Kwota_podstawowa</th>
+					<th>Kwota_dodatkowa</th>
+					<th>Nr_pracownika</th>
+					<th>Action</th>
+
+				</tr>
+			</thead>
+			<!--  table body -->
+			<tbody>
+				<tr align="center" th:each="Wynagrodzenia : ${listWynagrodzenia}">
+					<td th:text="${Wynagrodzenia.nr_wynagrodzenia}">Nr_wynagrodzenia</td>
+					<td th:text="${Wynagrodzenia.data}">Data</td>
+					<td th:text="${Wynagrodzenia.kwota_podstawowa}">Kwota_podstawowa</td>
+					<td th:text="${Wynagrodzenia.kwota_dodatkowa}">Kwota_dodatkowa</td>
+					<td th:text="${Wynagrodzenia.nr_pracownika}">Nr_pracownika</td>
+					<td><a
+						th:href="@{'/Wynagrodzenia/edit_Wynagrodzenia/' + ${Wynagrodzenia.nr_wynagrodzenia}}"><input
+							type="button" value="Edytuj" /></a> &nbsp;&nbsp;&nbsp;&nbsp; <a
+						th:href="@{'/Wynagrodzenia/delete_Wynagrodzenia/' + ${Wynagrodzenia.nr_wynagrodzenia}}"><input
+							type="button" value="Usun" /></a></td>
+
+				</tr>
+			</tbody>
+
+		</table>
+		<br />
+		<br /> <a href="/tables"> <input type="button"
+			value="Powrot do widoku tabel" />
+		</a>
+	</div>
+
+
+
+</body>
+
+</html>

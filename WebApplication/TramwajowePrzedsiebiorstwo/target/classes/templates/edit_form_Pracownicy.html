@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Edytuj Pracownicy</title>
+<link rel="stylesheet" href="../static/css/edit.css" th:href="@{/css/edit.css}" >
+<link rel="stylesheet" href="../static/css/button.css" th:href="@{/css/button.css}" >
+</head>
+
+<body onload="check">
+	<div align="center" class="table-wrapper">
+		<!-- Page header -->
+		<h1>Edytuj Pracownicy</h1>
+
+		<!-- End line/new line -->
+		<br />
+
+		<form action="#" th:action="@{/Pracownicy/update_Pracownicy}"
+			th:object="${Pracownicy}" method="post">
+			<!-- Table -->
+			<table border="1" cellpadding="10" class="fl-table">
+
+
+				<!-- Table first row -->
+				<tr align="center">
+					<th>Nr_pracownika:</th>
+					<td><input type="text" th:field="*{nr_pracownika}"
+						readonly="readonly"></td>
+				</tr>
+
+				<!-- Table second row -->
+				<tr align="center">
+					<th>Imie:</th>
+					<td><input type="text" th:field="*{imie}" maxlength="20" required></td>
+				</tr>
+
+				<!-- Table third row -->
+				<tr align="center">
+					<th>Nazwisko:</th>
+					<td><input type="text" th:field="*{nazwisko}" maxlength="40" required></td>
+				</tr>
+				<!-- Table four row -->
+				<tr align="center">
+					<th>Data_urodzenia:</th>
+					<td><input type="date" th:field="*{data_urodzenia}"  required></td>
+				</tr>
+				<!-- Table five row -->
+				<tr align="center">
+					<th>Plec:</th>
+					<td>
+						<!-- <input type="text" th:field="*{plec}"> -->
+						<div>
+							<input type="radio" id="genderChoice1" name="plec" value="M"
+								th:field="*{plec}"> <label for="genderChoice1" >Mężczyzna</label>
+
+							<input type="radio" id="genderChoice2" name="plec" value="K"
+								th:field="*{plec}"> <label for="genderChoice2">Kobieta</label>
+
+						</div>
+					</td>
+				</tr>
+				<!-- Table six row -->
+				<tr align="center">
+					<th>Pesel:</th>
+					<td><input type="text" th:field="*{pesel}" minlength="11"
+						maxlength="11" value=""></td>
+				</tr>
+				<!-- Table seven row -->
+				<tr align="center">
+					<th>Data_zatrudnienia:</th>
+					<td><input type="date" th:field="*{data_zatrudnienia}" required></td>
+				</tr>
+				<!-- Table eight row -->
+				<tr align="center">
+					<th>Data_zwolnienia:<input
+						id="checkbox" type="checkbox" onclick="check()"></th>
+					<td><input type="date" id="data_zwolnienia"
+						th:field="*{data_zwolnienia}" disabled> </td>
+				</tr>
+				<!-- Table nine row -->
+				<tr align="center">
+					<th>Nr_biura:</th>
+					<td><input type="number" th:field="*{nr_biura}" class="radio" min="1" required></td>
+				</tr>
+				<!-- Table ten row -->
+				<tr align="center">
+					<th>Nr_adresu:</th>
+					<td><input type="number" th:field="*{nr_adresu}" class="radio" min="1" required></td>
+				</tr>
+				<!-- Table eleven row -->
+				<tr align="center">
+					<th>Nr_stanowiska:</th>
+					<td><input type="number" th:field="*{nr_stanowiska}" class="radio" min="1" required></td>
+				</tr>
+
+				<!-- Button for save -->
+				<tr align="center">
+					<td><a href="/Pracownicy"> <input type="button"
+							value="Powrot" />
+					</a></td>
+					<td><button type="submit">Zapisz</button></td>
+				</tr>
+
+
+			</table>
+		</form>
+
+	</div>
+
+	<script>
+		function check() {
+			var x = document.getElementById("checkbox").checked;
+
+			if (x == true) {
+				document.getElementById("data_zwolnienia").disabled = false;
+			} else {
+				document.getElementById("data_zwolnienia").disabled = true;
+			}
+		}
+	</script>
+		<script th:if="${error}" th:inline="javascript">
+	var teks = /*[[${errorTekst}]]*/ "error";
+	var nr = /*[[${Pracownicy.nr_pracownika}]]*/
+		alert(teks);
+		window.history.pushState({page: "edit_form_Pracownicy"}, "Edytuj Pracownika", "/Pracownicy/edit_Pracownicy/"+ nr);
+	</script>
+
+</body>
+</html>

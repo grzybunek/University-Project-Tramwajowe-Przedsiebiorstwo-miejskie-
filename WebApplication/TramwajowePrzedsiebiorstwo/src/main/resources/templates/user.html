@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>User page</title>
+<link rel="stylesheet" href="../static/css/button.css"
+	th:href="@{/css/button.css}">
+<link rel="stylesheet" href="../static/css/user.css"
+	th:href="@{/css/user.css}">
+</head>
+
+<style>
+.left {
+	float: left;
+	width: 33.33%;
+}
+
+.center {
+	float: center;
+	width: 33.33%;
+}
+
+.right {
+	float: right;
+	width: 33.33%;
+}
+</style>
+<body>
+	<!-- Przycisk wylogowania -->
+	<a href="/" allign="left"><input type="button" value="Wyloguj" /></a>
+
+
+	<div align="center" th:object="${Pracownicy}" class="table-wrapper">
+		<h1 class="center">
+			Witaj <span th:text="${Pracownicy.imie}"></span>
+		</h1>
+
+		<!-- Klasa na lewo -->
+		<div th:object="${Pracownicy}" class="left">
+
+			<form action="#" method="post">
+
+
+				<h3>Twoje dane osobowe</h3>
+				<!-- Table -->
+				<table border="1" cellpadding="10" class="fl-table">
+
+
+					<!-- Table first row -->
+					<tr align="center">
+						<th style="background-color: #324960;">Twój nr_pracownika:</th>
+						<td><span th:text="${Pracownicy.nr_pracownika}"></span></td>
+					</tr>
+
+					<!-- Table second row -->
+					<tr align="center">
+						<th style="background-color: #4FC3A1;">Imie:</th>
+						<td><span th:text="${Pracownicy.imie}"></span></td>
+					</tr>
+
+					<!-- Table third row -->
+					<tr align="center">
+						<th style="background-color: #324960;">Nazwisko:</th>
+						<td><span th:text="${Pracownicy.nazwisko}"></span></td>
+					</tr>
+					<!-- Table four row -->
+					<tr align="center">
+						<th style="background-color: #4FC3A1;">Data_urodzenia:</th>
+						<td><span th:text="${Pracownicy.data_urodzenia}"></span></td>
+					</tr>
+					<!-- Table five row -->
+					<tr align="center">
+						<th style="background-color: #324960;">Plec:</th>
+						<td><span th:text="${Pracownicy.plec}"></span></td>
+					</tr>
+					<!-- Table six row -->
+					<tr align="center">
+						<th style="background-color: #4FC3A1;">Pesel:</th>
+						<td><span th:text="${Pracownicy.pesel}"></span></td>
+					</tr>
+					<!-- Table seven row -->
+					<tr align="center">
+						<th style="background-color: #324960;">Data_zatrudnienia:</th>
+						<td><span th:text="${Pracownicy.data_zatrudnienia}"></span></td>
+					</tr>
+					<tr align="center">
+						<td colspan="2"> <a th:href="@{'/users/'+${Pracownicy.nr_pracownika} +'/edit/'}"> <input type="button"
+							value="Edytuj" />
+					</a></td>
+					</tr>
+
+
+				</table>
+			</form>
+		</div>
+
+		<!-- Klasa na prawo -->
+		<div class="right" th:object="${listWynagrodzenia}">
+			<h3>Twoje wynagrodzenia</h3>
+			<table border="1" cellpadding="10" class="fl-table">
+				<tr align="center">
+					<th style="background-color: #324960;">Data</th>
+					<th style="background-color: #4FC3A1;">Kwota podstawowa</th>
+					<th style="background-color: #324960;">Kwota dodatkowa</th>
+				</tr>
+
+				<!-- Table second row -->
+				<tr align="center" th:each="Wynagrodzenia : ${listWynagrodzenia}">
+					<td th:text="${Wynagrodzenia.data}">Data</td>
+					<td th:text="${Wynagrodzenia.kwota_podstawowa}">Kwota_podstawowa</td>
+					<td th:text="${Wynagrodzenia.kwota_dodatkowa}">Kwota_dodatkowa</td>
+				</tr>
+			</table>
+		</div>
+
+		<!-- Klasa centralna -->
+		<div class="center" th:object="${Stanowiska}">
+			<h3>Twoje stanowisko</h3>
+			<table border="1" cellpadding="10" class="fl-table">
+
+
+				<!-- Table second row -->
+				<tr align="center">
+					<th style="background-color: #324960;">Nazwa stanowiska</th>
+					<th style="background-color: #4FC3A1;">Opis</th>
+				</tr>
+
+				<!-- Table third row -->
+				<tr align="center">
+					<td><span th:text="${Stanowiska.nazwa}"></span></td>
+
+					<td><span th:text="${Stanowiska.opis}"></span></td>
+				</tr>
+
+			</table>
+			<div th:object="${listPracownicy}">
+				<h3>Na tym samym stanowisku pracują</h3>
+
+				<table border="1" cellpadding="10" class="fl-table">
+					<tr align="center">
+						<th style="background-color: #324960;">Imie</th>
+						<th style="background-color: #4FC3A1;">Nazwisko</th>
+					</tr>
+
+					<!-- Table second row -->
+					<tr align="center" th:each="Pracownicy : ${listPracownicy}">
+						<td th:text="${Pracownicy.imie}">Imie</td>
+						<td th:text="${Pracownicy.nazwisko}">Nazwisko</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+
+	</div>
+
+</body>
+</html>

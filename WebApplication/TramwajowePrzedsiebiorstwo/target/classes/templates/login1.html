@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Logowanie</title>
+<link rel="stylesheet" href="../static/css/login1.css"
+	th:href="@{/css/login1.css}">
+
+</head>
+<body>
+
+	<section class="form animated flipInX">
+		<h2>Logowanie do bazy danych</h2>
+		<p class="valid">Valid. Please wait a moment.</p>
+		<p class="error">Error. Please enter correct Username &amp;
+			password.</p>
+		<form class="loginbox" autocomplete="off" action="#"
+			th:action="@{/login}" th:object="${Login}" method="post">
+			<input type="text" autofocus="true" id="username" name="username" placeholder="Twój numer" >
+			<input type="password" id="password" name="password"  placeholder="Twoje hasło">
+			<button id="submit">Zaloguj sie</button>
+		</form>
+	</section>
+
+</body>
+</html>

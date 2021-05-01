@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Error</title>
+<link rel="stylesheet" href="../static/css/error_page.css" th:href="@{/css/error_page.css}" >
+</head>
+<body>
+<main class="bsod container">
+  <h1 class="neg title"><span class="bg">Błąd</span></h1>
+  <p>Podczas działania aplikacji wystąpił nieoczekiwany błąd. Zalecamy:</p>
+  <p>* Powrót do strony głównej.<br />
+    * Powiadomienie osoby odpowiedzialną za aplikacje o istniejącym błędzie</p>
+  <nav class="nav">
+    <a href="/tables" class="link">strona główna</a>&nbsp;|&nbsp;<a href="/" class="link">panel logowania</a>
+  </nav>
+</main>
+</body>
+</html>

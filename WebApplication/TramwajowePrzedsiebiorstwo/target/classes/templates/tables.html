@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Tablice</title>
+<link rel="stylesheet" href="../static/css/table.css"
+	th:href="@{/css/table.css}">
+<link rel="stylesheet" href="../static/css/button.css"
+	th:href="@{/css/button.css}">
+</head>
+<style>
+.left {
+	float: left;
+	width: 33.33%;
+}
+
+.center {
+	float: center;
+	width: 50%;
+}
+</style>
+
+
+<body>
+	<a href="/" align="left"><input type="button" value="Wyloguj" /></a>
+
+	<div align="center" class="table-wrapper">
+		<!-- Page header -->
+		<h1>Tablice</h1>
+
+		<!-- Najbardziej po lewo -->
+		<div class="left">
+			<!-- Entry to new page -->
+			<a href="/ZTM/"><input type="button" value="Tablica ZTM" /></a> <br />
+			<br /><a
+				href="/Stanowiska/"><input type="button"
+				value="Tablica Stanowiska" /></a>  <br /> <br />
+		</div>
+		<!-- Centrum-->
+		<div class="left">
+			<a href="/Adresy/"><input type="button" value="Tablica Adresy" /></a>
+			<br /> <br /> <a href="/Poczty/"><input type="button"
+				value="Tablica Poczty" /></a> <br /> <br />
+		</div>
+
+		<!-- Najbardziej po prawo -->
+		<div class="left">
+			<a href="/Wynagrodzenia/"><input type="button"
+				value="Tablica Wynagrodzenia" /></a> <br /> <br /> <a href="/Pracownicy/"><input type="button"
+				value="Tablica Pracownicy" /></a>
+		</div>
+
+		<!-- Srodek szybkie zadania -->
+		<div class="center">
+			<br /> <br />
+
+			<!-- Second page header -->
+			<h1 align="center">Szybkie zadania</h1>
+			<a href="/edit_acc/"><input type="button"
+				value="Edytuj konto uzytkownika" /></a><br /> <br /> <a
+				href="/hire_employee/"><input type="button"
+				value="Zatrudnij nowego pracownika" /></a>
+				<br /> <br />
+		</div>
+	</div>
+</body>
+
+</html>

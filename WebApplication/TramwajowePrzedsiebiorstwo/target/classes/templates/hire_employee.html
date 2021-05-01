@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Zatrudnianie pracownika</title>
+<link rel="stylesheet" href="../static/css/hire.css"
+	th:href="@{/css/hire.css}">
+<link rel="stylesheet" href="../static/css/button.css"
+	th:href="@{/css/button.css}">
+</head>
+<style>
+.center {
+	float: center;
+	width: 75%;
+}
+</style>
+<body onload="check">
+	<div align="center" class="table-wrapper">
+		<!-- Page header -->
+		<h1>Uzupełnij informacje o pracowniku</h1>
+		<br /> <br />
+
+		<form method="post" th:action="@{/hire_employee/save}">
+			<div th:object="${Pracownicy}" class="center">
+				<!-- Table -->
+				<table border="1" cellpadding="10" class="fl-table">
+
+
+					<!-- Table second row -->
+					<tr align="center">
+						<th>Imie:</th>
+						<td><input type="text" th:field="*{imie}" maxlength="20"
+							required></td>
+					</tr>
+
+					<!-- Table third row -->
+					<tr align="center">
+						<th>Nazwisko:</th>
+						<td><input type="text" th:field="*{nazwisko}" maxlength="40"
+							required></td>
+					</tr>
+					<!-- Table four row -->
+					<tr align="center">
+						<th>Data_urodzenia:</th>
+						<td><input type="date" th:field="*{data_urodzenia}" required></td>
+					</tr>
+					<!-- Table five row -->
+					<tr align="center">
+						<th>Plec:</th>
+						<td>
+							<!-- <input type="text" th:field="*{plec}"> -->
+							<div>
+								<input type="radio" id="gendertChoice1" name="plec" value="M"
+									th:field="*{plec}"> <label for="genderChoice1">Mężczyzna</label>
+
+								<input type="radio" id="genderChoice2" name="plec" value="K"
+									th:field="*{plec}"> <label for="genderChoice2">Kobieta</label>
+
+							</div>
+						</td>
+
+					</tr>
+					<!-- Table six row -->
+					<tr align="center">
+						<th>Pesel:</th>
+						<td><input type="text" th:field="*{pesel}" minlength="11"
+							maxlength="11"></td>
+					</tr>
+					<!-- Table seven row -->
+					<tr align="center">
+						<th>Data_zatrudnienia:</th>
+						<td><input type="date" th:field="*{data_zatrudnienia}"
+							required></td>
+					</tr>
+
+					<!-- Table nine row -->
+
+					<tr align="center">
+						<th>Nazwa biura:</th>
+						<td><select name="states" class="radio"
+							th:field="*{nr_biura}">
+								<option th:each="ZTM : ${listZTM}" th:value="${ZTM.Nr_biura}"
+									th:text="${ZTM.Nazwa}"></option>
+
+						</select><br></td>
+					</tr>
+
+					<!-- Table eleven row -->
+					<tr align="center">
+						<th>Stanowisko:</th>
+						<td><select name="states" class="radio"
+							th:field="*{nr_stanowiska}">
+								<option th:each="Stanowiska : ${listStanowiska}"
+									th:value="${Stanowiska.Nr_stanowiska}"
+									th:text="${Stanowiska.Nazwa}"></option>
+						</select></td>
+					</tr>
+
+
+				</table>
+			</div>
+			<h1>Adres</h1>
+			<div th:object="${Adresy}" class="center">
+				<table border="1" cellpadding="10" class="fl-table">
+					<!-- Table second row -->
+					<tr align="center">
+						<th>Miasto:</th>
+						<td><input type="text" th:field="*{miasto}" maxlength="30"
+							required></td>
+					</tr>
+
+					<!-- Table third row -->
+					<tr align="center">
+						<th>Ulica:</th>
+						<td><input type="text" th:field="*{ulica}" maxlength="30"
+							required></td>
+					</tr>
+					<!-- Table four row -->
+					<tr align="center">
+						<th>Nr_lokalu:</th>
+						<td><input type="text" th:field="*{nr_lokalu}" maxlength="5"
+							required></td>
+					</tr>
+				</table>
+
+			</div>
+
+			<div th:object="${Poczty}" class="center">
+
+				<h1>Poczta</h1>
+				<table border="1" cellpadding="10" class="fl-table">
+					<!-- Table second row -->
+					<tr align="center">
+						<th>Kod_poczty:</th>
+						<td><input list="poczty" th:field="*{kod_poczty}"
+							maxlength="6" class="radio" required></td>
+					</tr>
+
+					<!-- Table third row -->
+					<tr align="center">
+						<th>Poczta:</th>
+						<td><input type="text" th:field="*{poczta}" maxlength="30"
+							required></td>
+					</tr>
+
+					<!-- Button save -->
+
+				</table>
+				<a href="/tables"> <input type="button" value="Powrot" />
+				</a>
+				<button type="submit" th:action="@{/hire_employee/save}">Zapisz</button>
+			</div>
+
+		</form>
+	</div>
+
+	<script>
+		function check() {
+			var x = document.getElementById("checkbox").checked;
+
+			if (x == true) {
+				document.getElementById("data_zwolnienia").disabled = true;
+			} else {
+				document.getElementById("data_zwolnienia").disabled = false;
+			}
+		}
+	</script>
+
+	<datalist id="biura">
+		<option th:each="ZTM : ${listZTM}" th:value="${ZTM.Nr_biura}"
+			th:text="${ZTM.Nazwa}"></option>
+	</datalist>
+
+	<datalist id="stanowiska">
+		<option th:each="Stanowiska : ${listStanowiska}"
+			th:value="${Stanowiska.Nr_stanowiska}" th:text="${Stanowiska.Nazwa}"></option>
+	</datalist>
+	<datalist id="poczty">
+		<option th:each="Poczty : ${listPoczty}"
+			th:value="${Poczty.Kod_poczty}" th:text="${Poczty.Kod_poczty}"></option>
+	</datalist>
+
+</body>
+</html>

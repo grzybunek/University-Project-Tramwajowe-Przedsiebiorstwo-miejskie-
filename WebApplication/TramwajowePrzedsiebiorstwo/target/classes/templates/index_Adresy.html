@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Adresy table</title>
+<link rel="stylesheet" href="../static/css/table.css" th:href="@{/css/table.css}" >
+<link rel="stylesheet" href="../static/css/button.css" th:href="@{/css/button.css}" >
+</head>
+
+<body>
+	<div align="center" class="table-wrapper">
+		<!-- Page header -->
+		<h1>Rekordy w adresy </h1>
+
+		<!-- Entry to new page -->
+				<div align="center">
+					<a href="/tables" > <input type="button" 
+							value="Powrot do widoku tabel" />
+					</a> <br />
+		<a href="/Adresy/new_Adresy"><input type="button" 
+							value="Dodaj nowy rekord" /></a>
+	
+</div>
+		<!-- Break line -->
+		<br /> 
+
+		<!-- Table -->
+		<table border="1" cellpadding="10" class="fl-table">
+			<!-- Table header -->
+			<thead>
+				<tr align="center">
+					<th>Nr_adresu</th>
+					<th>Miasto</th>
+					<th>Ulica</th>
+					<th>Nr_lokalu</th>
+					<th>Nr_poczty</th>
+					<th>Action</th>
+
+				</tr>
+			</thead>
+			<!--  table body -->
+			<tbody>
+				<tr align="center" th:each="Adresy : ${listAdresy}">
+					<td th:text="${Adresy.nr_adresu}">Nr_adresu</td>
+					<td th:text="${Adresy.miasto}">Miasto</td>
+					<td th:text="${Adresy.ulica}">Ulica</td>
+					<td th:text="${Adresy.nr_lokalu}">Nr_lokalu</td>
+					<td th:text="${Adresy.nr_poczty}">Nr_poczty</td>
+					<td><a
+						th:href="@{'/Adresy/edit_Adresy/' + ${Adresy.nr_adresu}}"><input type="button" 
+							value="Edytuj" /></a>
+						&nbsp;&nbsp;&nbsp;&nbsp; <a
+						th:href="@{'/Adresy/delete_Adresy/' + ${Adresy.nr_adresu}}"><input type="button" 
+							value="Usun" /></a></td>
+
+				</tr>
+			</tbody>
+
+		</table>
+			<br/><br/>
+			<a href="/tables" > <input type="button" 
+							value="Powrot to widoku tabel" />
+					</a>
+	</div>
+
+
+	<script th:if="${error}">
+		alert("Niedozwolona operacja! Usunięcie tego redordu narusza więzy spójności bazy danych!");
+		window.history.pushState({page: "index_Adresy"}, "Adresy table", "/Adresy/");
+	</script>
+</body>
+
+</html>

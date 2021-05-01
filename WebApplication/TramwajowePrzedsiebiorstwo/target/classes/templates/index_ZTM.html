@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ZTM table</title>
+<link rel="stylesheet" href="../static/css/table.css" th:href="@{/css/table.css}" >
+<link rel="stylesheet" href="../static/css/button.css" th:href="@{/css/button.css}" >
+</head>
+
+<body >
+
+	<div align="center" class="table-wrapper">
+		<!-- Page header -->
+		<h1>Rekordy w ZTM</h1>
+
+		<!-- Entry to new page -->
+				<div align="center">
+					<a href="/tables" > <input type="button" 
+							value="Powrot do widoku tabel" />
+					</a> <br/>
+		<a href="/ZTM/new_ZTM"><input type="button" 
+							value="Dodaj nowy rekord"/></a></div>
+		
+		<!-- Break line -->
+		<br/>
+
+		<!-- Table -->
+		<table border="1" cellpadding="10" class="fl-table">
+			<!-- Table header -->
+			<thead>
+				<tr align="center">
+					<th >Nr_biura</th>
+					<th>Nazwa</th>
+					<th>Miasto</th>
+					<th>Data_zalożenia</th>
+					<th>Nr_Adresu</th>
+					<th>Action</th>
+
+				</tr>
+			</thead>
+			<!--  table body -->
+			<tbody>
+				<tr align="center" th:each="ZTM : ${listZTM}">
+					<td th:text="${ZTM.Nr_biura}">Nr_biura</td>
+					<td th:text="${ZTM.Nazwa}">Nazwa</td>
+					<td th:text="${ZTM.Miasto}">Miasto</td>
+					<td th:text="${ZTM.Data_zalozenia}">Data_zalozenia</td>
+					<td th:text="${ZTM.Nr_adresu}">Nr_adresu</td>
+
+					<td><a th:href="@{'/ZTM/edit_ZTM/' + ${ZTM.Nr_biura}}"><input type="button" 
+							value="Edytuj" /></a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a th:href="@{'/ZTM/delete_ZTM/' + ${ZTM.Nr_biura}}"><input type="button" 
+							value="Usun" /></a>
+					</td>
+					
+				</tr>
+			</tbody>
+
+		</table>
+					<br/><br/>
+			<a href="/tables" > <input type="button" 
+							value="Powrot do widoku tabel" />
+					</a>
+	</div>
+	<script th:if="${error}">
+		alert("Niedozwolona operacja! Usunięcie tego redordu narusza więzy spójności bazy danych!");
+		window.history.pushState({page: "index_ZTM"}, "ZTM table", "/ZTM/");
+	</script>
+</body>
+
+</html>

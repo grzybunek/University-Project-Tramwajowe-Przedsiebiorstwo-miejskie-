@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Edytuj konto</title>
+<link rel="stylesheet" href="../static/css/edit_acc.css" th:href="@{/css/edit_acc.css}" >
+<link rel="stylesheet" href="../static/css/button.css" th:href="@{/css/button.css}" >
+</head>
+
+<body>
+	<div align="center" class="table-wrapper">
+		<!-- Page header -->
+		<h1>Edytuj konto</h1>
+		<br /> <br />
+
+		<form action="#" th:action="@{/edit_acc/save}" th:object="${Login}"
+			method="post">
+			<!-- Table -->
+			<table border="1" cellpadding="10" class="fl-table">
+
+
+
+				<!-- Table second row -->
+				<tr align="center" >
+
+					<th><label for="username">Nr pracownika:</label></th>
+					<td><input type="text" id="username" name="username" required></td>
+				</tr>
+
+				<!-- Table third row -->
+				<tr align="center">
+					<th><label for="password">Nowe hasło:</label></th>
+					<td><input type="text" id="password" name="password" required></td>
+				</tr>
+				<!-- Table four row -->
+				<tr align="center">
+					<th><label for="permissions">Uprawnienia:</label></th>
+					<!--<td><input type="text" id="permissions" name="permissions"></td>-->
+					<td>
+						<div>
+							<input type="radio" id="permissionsChoice1" name="permissions"
+								value="u" checked> <label for="permissionsChoice1" >Uzytkownik</label>
+							<input type="radio" id="permissionsChoice2" name="permissions"
+								value="a"> <label for="permissionsChoice2">Admin</label>
+
+						</div>
+					</td>
+				</tr>
+
+
+				<!-- Button save -->
+				<tr align="center">
+					<td><a href="/tables"> <input type="button" value="Powrot" />
+					</a></td>
+					<td><button type="submit">Zapisz</button></td>
+
+
+
+				</tr>
+			</table>
+		</form>
+
+	</div>
+
+
+
+</body>
+
+</html>

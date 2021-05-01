@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Nowy adres</title>
+<link rel="stylesheet" href="../static/css/edit.css" th:href="@{/css/edit.css}" >
+<link rel="stylesheet" href="../static/css/button.css" th:href="@{/css/button.css}" >
+</head>
+
+<body>
+	<div align="center" class="table-wrapper">
+		<!-- Page header -->
+		<h1>Wprowadz nowy adres</h1>
+		<br /> <br />
+
+		<form action="#" th:action="@{/Adresy/save_Adresy}"
+			th:object="${Adresy}" method="post">
+			<!-- Table -->
+			<table border="1" cellpadding="10" class="fl-table">
+
+
+
+				<!-- Table second row -->
+				<tr align="center">
+					<th>Miasto:</th>
+					<td><input type="text" th:field="*{miasto}" maxlength="30" required></td>
+				</tr>
+
+				<!-- Table third row -->
+				<tr align="center">
+					<th>Ulica:</th>
+					<td><input type="text" th:field="*{ulica}" maxlength="30" required></td>
+				</tr>
+				<!-- Table four row -->
+				<tr align="center">
+					<th>Nr_lokalu:</th>
+					<td><input type="text" th:field="*{nr_lokalu}" maxlength="5" required></td>
+				</tr>
+				<!-- Table five row -->
+				<tr align="center">
+					<th>Nr_poczty:</th>
+					<td><input type="number" th:field="*{nr_poczty}" class="radio" onfocus="this.value=''" min="1" required></td>
+
+				</tr>
+
+
+				<!-- Button save -->
+				<tr align="center">
+					<td><a href="/Adresy"> <input type="button" value="Powrot" />
+					</a></td>
+					<td><button type="submit">Zapisz</button></td>
+
+
+
+				</tr>
+			</table>
+		</form>
+
+
+	</div>
+	<script th:if="${error}" th:inline="javascript">
+	var teks = /*[[${errorTekst}]]*/
+		alert(teks);
+		window.history.pushState({page: "new_form_Adresy"}, "Wprowadz nowy adres", "/Adresy/new_Adresy");
+	</script>
+</body>
+
+</html>

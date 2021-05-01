@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Poczty table</title>
+<link rel="stylesheet" href="../static/css/table.css" th:href="@{/css/table.css}" >
+<link rel="stylesheet" href="../static/css/button.css" th:href="@{/css/button.css}" >
+</head>
+
+<body>
+	<div align="center" class="table-wrapper">
+		<!-- Page header -->
+		<h1>Rekordy w poczty</h1>
+
+		<!-- Entry to new page -->
+				<div align="center">
+					<a href="/tables" > <input type="button" 
+							value="Powrot do widoku tabel" />
+					</a> <br/>
+		<a href="/Poczty/new_Poczty"><input type="button"
+			value="Wprowadz nowy rekord" /></a></div>
+
+		<!-- Break line -->
+		<br /> 
+
+		<!-- Table -->
+		<table border="1" cellpadding="10" class="fl-table">
+			<!-- Table header -->
+			<thead>
+				<tr align="center">
+					<th>Nr_poczty</th>
+					<th>Kod_poczty</th>
+					<th>Poczta</th>
+					<th>Action</th>
+
+				</tr>
+			</thead>
+			<!--  table body -->
+			<tbody>
+				<tr align="center" th:each="Poczty : ${listPoczty}">
+					<td th:text="${Poczty.nr_poczty}">Nr_poczty</td>
+					<td th:text="${Poczty.kod_poczty}">Kod_poczty</td>
+					<td th:text="${Poczty.poczta}">Poczta</td>
+					<td><a
+						th:href="@{'/Poczty/edit_Poczty/' + ${Poczty.nr_poczty}}"><input
+							type="button" value="Edytuj" /></a> &nbsp;&nbsp;&nbsp;&nbsp; <a
+						th:href="@{'/Poczty/delete_Poczty/' + ${Poczty.nr_poczty}}"><input
+							type="button" value="Usun" /></a></td>
+
+				</tr>
+			</tbody>
+
+		</table>
+		<br />
+		<br /> <a href="/tables"> <input type="button"
+			value="Powrot do widoku tabel" />
+		</a>
+	</div>
+
+	<script th:if="${error}">
+		alert("Niedozwolona operacja! Usunięcie tego redordu narusza więzy spójności bazy danych!");
+		window.history.pushState({page: "index_Poczty"}, "Poczty table", "/Poczty/");
+	</script>
+
+</body>
+
+</html>

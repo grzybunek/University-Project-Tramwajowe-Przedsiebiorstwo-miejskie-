@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Nowe stanowisko</title>
+<link rel="stylesheet" href="../static/css/edit.css" th:href="@{/css/edit.css}" >
+<link rel="stylesheet" href="../static/css/button.css" th:href="@{/css/button.css}" >
+</head>
+
+<body>
+	<div align="center" class="table-wrapper">
+		<!-- Page header -->
+		<h1>Wprowadz nowe stanowisko</h1>
+		<br /> <br />
+
+		<form action="#" th:action="@{/Stanowiska/save_Stanowiska}"
+			th:object="${Stanowiska}" method="post">
+			<!-- Table -->
+			<table border="1" cellpadding="10" class="fl-table">
+
+
+
+				<!-- Table second row -->
+				<tr align="center">
+					<th>Nazwa:</th>
+					<td><input type="text" th:field="*{nazwa}" maxlength="30" required></td>
+				</tr>
+
+				<!-- Table third row -->
+				<tr align="center">
+					<th>Opis:</th>
+					<td><input type="text" th:field="*{opis}" maxlength="400" required></td>
+				</tr>
+
+				<!-- Button save -->
+				<tr align="center">
+					<td><a href="/Stanowiska"> <input type="button"
+							value="Powrot" />
+					</a></td>
+					<td><button type="submit">Zapisz</button></td>
+
+
+
+				</tr>
+			</table>
+		</form>
+
+
+	</div>
+
+</body>
+
+</html>

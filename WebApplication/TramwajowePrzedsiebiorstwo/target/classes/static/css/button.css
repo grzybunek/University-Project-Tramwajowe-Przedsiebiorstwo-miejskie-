@@ -1,0 +1,35 @@
+input[type=button], input[type=submit], input[type=reset] {
+	background-color: #2c6761;
+	border: none;
+	color: white;
+	padding: 12px 26px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+button[type=submit] {
+	background-color: #2c6761;
+	border: none;
+	color: white;
+	padding: 12px 26px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+;
+
+/* input[type=button] {
+	background-color: #2c6761;
+	border: none;
+	text-decoration: none;
+	color: white;
+	padding: 20px 20px;
+	margin: 20px 20px;
+	cursor: pointer;
+} */
+input[type=button]:hover {
+	background: linear-gradient(to bottom, #f2ab1e 5%, #f0c911 100%);
+	background-color: #f2ab1e;
+}

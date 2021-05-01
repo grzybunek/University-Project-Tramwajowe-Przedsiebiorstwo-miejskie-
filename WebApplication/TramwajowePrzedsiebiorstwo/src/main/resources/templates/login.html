@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Logowanie</title>
+<link rel="stylesheet" href="../static/css/login.css" th:href="@{/css/login.css}" >
+<link rel="stylesheet" href="../static/css/button.css" th:href="@{/css/button.css}" >
+
+</head>
+<style>
+
+
+</style>
+<body>
+<div align="center" class="table-wrapper">
+		<!-- Page header -->
+		<h1>Logowanie do bazy danych</h1>
+		<br /> <br />
+<br /> <br />
+<br /> <br />
+<br /> <br />
+<br /> 
+
+		<form action="#" th:action="@{/login}"
+			th:object="${Login}" method="post" class="centered">
+			<!-- Table -->
+			<table border="1" cellpadding="10"  class="fl-table">
+
+				<!-- Table first row -->
+				<tr align="center" >
+
+					<td style="background-color: #4FC3A1;"><label for="username"><h3>Nr_pracownika</h3></label></td>
+					<td><input type="text" autofocus="true" id="username" name="username" placeholder="Twój numer" ></td>
+				</tr>
+
+				<!-- Table second row -->
+				<tr align="center" >
+					<td style="background-color: #324960;"><label for="password"><h3>Hasło</h3></label></td>
+					<td></td>
+				</tr>
+
+				<!-- Table third row -->
+	
+				
+			</table>
+			<br /> 
+			<button type="submit">Zaloguj sie</button>
+		</form>
+
+
+
+
+	</div>
+
+</body>
+</html>

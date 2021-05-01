@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Edytuj ZTM</title>
+<link rel="stylesheet" href="../static/css/edit.css"
+	th:href="@{/css/edit.css}">
+<link rel="stylesheet" href="../static/css/button.css"
+	th:href="@{/css/button.css}">
+</head>
+
+<body>
+	<div align="center" class="table-wrapper">
+		<!-- Page header -->
+		<h1>Edytuj ZTM</h1>
+
+		<!-- End line/new line -->
+		<br />
+
+		<form action="#" th:action="@{/ZTM/update_ZTM}" th:object="${ZTM}"
+			method="post">
+			<!-- Table -->
+			<table border="1" cellpadding="10" class="fl-table">
+
+
+				<!-- Table first row -->
+				<tr align="center">
+					<th>Nr_biura:</th>
+					<td><input type="text" th:field="*{Nr_biura}"
+						readonly="readonly"></td>
+				</tr>
+
+				<!-- Table second row -->
+				<tr align="center">
+					<th>Nazwa:</th>
+					<td><input type="text" th:field="*{Nazwa}" maxlength="50"
+						required></td>
+				</tr>
+
+				<!-- Table third row -->
+				<tr align="center">
+					<th>Miasto:</th>
+					<td><input type="text" th:field="*{Miasto}" maxlength="50"
+						required></td>
+				</tr>
+				<!-- Table four row -->
+				<tr align="center">
+					<th>Data_zalozenia:</th>
+					<td><input type="date" th:field="*{Data_zalozenia}" required></td>
+				</tr>
+				<!-- Table five row -->
+				<tr align="center">
+					<th>Nr_adresu:</th>
+					<td><input type="number" th:field="*{Nr_adresu}" class="radio"
+						min="1" required></td>
+				</tr>
+
+				<!-- Button for save -->
+				<tr align="center">
+					<td><a href="/ZTM"> <input type="button" value="Powrot" />
+					</a></td>
+					<td><button type="submit">Zapisz</button></td>
+				</tr>
+
+
+			</table>
+		</form>
+
+	</div>
+	<script th:if="${error}" th:inline="javascript">
+	var teks = /*[[${errorTekst}]]*/ "error";
+	var nr = /*[[${ZTM.nr_biura}]]*/
+		alert(teks);
+		window.history.pushState({page: "edit_form_ZTM"}, "Edytuj ZTM", "/ZTM/edit_ZTM/"+ nr);
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Nowa poczta</title>
+<link rel="stylesheet" href="../static/css/edit.css" th:href="@{/css/edit.css}" >
+<link rel="stylesheet" href="../static/css/button.css" th:href="@{/css/button.css}" >
+
+</head>
+
+<body>
+	<div align="center" class="table-wrapper">
+		<!-- Page header -->
+		<h1>Wprowadz nowa poczte</h1>
+		<br /> <br />
+
+		<form action="#" th:action="@{/Poczty/save_Poczty}"
+			th:object="${Poczty}" method="post">
+			<!-- Table -->
+			<table border="1" cellpadding="10" class="fl-table">
+
+
+
+				<!-- Table second row -->
+				<tr align="center">
+					<th>Kod_poczty:</th>
+					<td><input type="text" th:field="*{kod_poczty}" maxlength="6" required></td>
+				</tr>
+
+				<!-- Table third row -->
+				<tr align="center">
+					<th>Poczta:</th>
+					<td><input type="text" th:field="*{poczta}" maxlength="30" required></td>
+				</tr>
+
+				<!-- Button save -->
+				<tr align="center">
+					<td><a href="/Poczty"> <input type="button" value="Powrot" />
+					</a></td>
+					<td><button type="submit">Zapisz</button></td>
+
+
+				</tr>
+			</table>
+			<div th:if="${error}" align="center">
+			<h4 style="color: red;">PODANO ZŁY KOD_POCZTY</h4>
+
+		</div>
+		</form>
+
+
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Pracownicy table</title>
+<link rel="stylesheet" href="../static/css/table.css" th:href="@{/css/table.css}" >
+<link rel="stylesheet" href="../static/css/button.css" th:href="@{/css/button.css}" >
+</head>
+<style>
+
+</style>
+
+<body>
+
+	<div align="center" class="table-wrapper">
+
+		<!-- Page header -->
+		<h1>Rekordy w pracownicy </h1>
+
+		<!-- Entry to new page -->
+		<div align="center">
+					<a href="/tables" > <input type="button" 
+							value="Powrot do widoku tabel" />
+					</a> <br/>
+		<a href="/Pracownicy/new_Pracownicy"><input type="button" 
+							value="Dodaj nowy rekord"/></a>
+	
+			</div>				
+
+		<!-- Break line -->
+		<br /> 
+
+		<!-- Table -->
+		<table border="1" cellpadding="10" class="fl-table">
+			<!-- Table header -->
+			<thead>
+				<tr align="center">
+					<th>Nr_pracownika</th>
+					<th>Imię</th>
+					<th>Nazwisko</th>
+					<th>Data_urodzenia</th>
+					<th>Płeć</th>
+					<th>Pesel</th>
+					<th>Data_zatrudnienia</th>
+					<th>Data_zwolnienia</th>
+					<th>Nr_biura</th>
+					<th>Nr_adresu</th>
+					<th>Nr_stanowiska</th>
+					<th>Action</th>
+
+				</tr>
+			</thead>
+			<!--  table body -->
+			<tbody>
+				<tr align="center" th:each="Pracownicy : ${listPracownicy}">
+					<td th:text="${Pracownicy.nr_pracownika}">Nr_pracownika</td>
+					<td th:text="${Pracownicy.imie}">Imie</td>
+					<td th:text="${Pracownicy.nazwisko}">Nazwisko</td>
+					<td th:text="${Pracownicy.data_urodzenia}">Data_urodzenia</td>
+					<td th:text="${Pracownicy.plec}">Plec</td>
+					<td th:text="${Pracownicy.pesel}">Pesel</td>
+					<td th:text="${Pracownicy.data_zatrudnienia}">Data_zatrudnienia</td>
+					<td th:text="${Pracownicy.data_zwolnienia}">Data_zwolnienia</td>
+					<td th:text="${Pracownicy.nr_biura}">Nr_biura</td>
+					<td th:text="${Pracownicy.nr_adresu}">Nr_adresu</td>
+					<td th:text="${Pracownicy.nr_stanowiska}">Nr_stanowiska</td>
+					<td><a
+						th:href="@{'/Pracownicy/edit_Pracownicy/' + ${Pracownicy.nr_pracownika}}"><input type="button" 
+							value="Edytuj" /></a>
+						&nbsp;&nbsp;&nbsp;&nbsp; <a
+						th:href="@{'/Pracownicy/delete_Pracownicy/' + ${Pracownicy.nr_pracownika}}"><input type="button" 
+							value="Usun" /></a></td>
+
+				</tr>
+			</tbody>
+
+		</table>
+			<br/><br/>
+			<a href="/tables" > <input type="button" 
+							value="Powrot do widoku tabel" />
+					</a>
+	</div>
+
+
+
+</body>
+	<script th:if="${error}">
+		alert("Niedozwolona operacja! Usunięcie tego redordu narusza więzy spójności bazy danych!");
+		window.history.pushState({page: "index_Pracownicy"}, "Pracownicy table", "/Pracownicy/");
+	</script>
+</html>
